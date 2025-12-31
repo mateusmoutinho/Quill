@@ -23,7 +23,7 @@ function linux_bin()
 end
 
 darwin.add_recipe({
-    name = "linux_bin",
+    name = "static_linux",
     requires = {"amalgamation"},
     description = "Make a static compiled linux binary of the project",
     outs = {"release/" .. PROJECT_NAME .. "_linux_bin.out"},
