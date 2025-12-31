@@ -1,3 +1,4 @@
 dependencies/*
 release/*
 .darwincache
+fdeclare.all.h
