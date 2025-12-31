@@ -47,7 +47,6 @@ chmod +x %{buildroot}/usr/local/bin/PROJECT_NAME
     formatted_rpm = string.gsub(formatted_rpm, "FULLNAME", FULLNAME)
     formatted_rpm = string.gsub(formatted_rpm, "TIMEZONE", os.date("%a %b %d %Y"))
     formatted_rpm = string.gsub(formatted_rpm, "EMAIL", EMAIL)
-    formatted_rpm = string.gsub(formatted_rpm, "YOUR_CHANGES", YOUR_CHANGES)
 
     darwin.dtw.write_file(".cache/rpm_static_build/SPECS/project.spec", formatted_rpm)
     os.execute("mkdir -p .cache/rpm_static_build/RPMS")
@@ -85,6 +84,6 @@ darwin.add_recipe({
     requires = {"static_linux"},
     description = "Create an RPM package from the static linux binary",
     outs = {"release/" .. PROJECT_NAME .. ".rpm"},
-    inputs = {"src", "dependencies"},
+    inputs = {"src", "dependencies", "builds"},
     callback = rpm_static_build
 })

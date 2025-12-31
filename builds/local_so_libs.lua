@@ -15,7 +15,7 @@ function create_objects_linkage()
         {command=compiler.." -shared -fPIC dependencies/UniversalSocket.c -o libs/UniversalSocket.so",out_path="libs/UniversalSocket.so"},
         {command=compiler.." -shared -fPIC dependencies/LuaCEmbed.c    -o libs/LuaCEmbed.so",out_path="libs/LuaCEmbed.so"},
         {command=compiler.." -shared -fPIC dependencies/CWebStudio.c       -o libs/CWebStudio.so",out_path="libs/CWebStudio.so"},
-        {command=compiler..[[ -shared -fPIC dependencies/doTheWorldOne.c     -DDTW_CHASH_PATH=\"CHashManipulator.c\"  -DDTW_ALLOW_CHASH  -o libs/doTheWorld.so]],out_path="libs/doTheWorld.so"},
+        {command=compiler..[[ -shared -fPIC dependencies/doTheWorldOne.c        -o libs/doTheWorld.so]],out_path="libs/doTheWorld.so"},
 
     }
 
@@ -30,9 +30,10 @@ end
 
 
 darwin.add_recipe({
-    name = "libs_so",
+    name = "local_so_libs",
     inputs = {
-        "dependencies"
+        "dependencies",
+        "builds"
     },
     description = "Build shared libraries and link them locally",
     outs = {

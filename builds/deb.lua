@@ -53,6 +53,6 @@ darwin.add_recipe({
     requires = {"static_linux","silver_chain_organize"},
     description = "Create a debian package from the static linux binary",
     outs = {"release/" .. PROJECT_NAME .. ".deb"},
-    inputs = {"src", "dependencies"},
+    inputs = {"src", "dependencies", "builds"},
     callback = debian_static_build
 })

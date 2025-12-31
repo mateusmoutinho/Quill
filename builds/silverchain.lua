@@ -28,7 +28,8 @@ end
 darwin.add_recipe({
     inputs={
         "src",
-        "dependencies"
+        "dependencies",
+        "builds"
     },
     outs= {
         "src/fdeclare.all.h"
