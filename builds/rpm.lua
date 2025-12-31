@@ -1,7 +1,7 @@
 function rpm_static_build()
     darwin.dtw.copy_any_overwriting(
-        "release/" .. PROJECT_NAME .. "_linux_bin.out",
-        ".cache/rpm_static_build/SOURCES/" .. PROJECT_NAME .. "_linux_bin.out"
+        "release/" .. PROJECT_NAME .. "static_linux.out",
+        ".cache/rpm_static_build/SOURCES/" .. PROJECT_NAME .. "static_linux.out"
     )
 
     local formatted_rpm = [[
@@ -9,7 +9,7 @@ Name:           PROJECT_NAME
 Version:        VERSION
 Release:        1%{?dist}
 Summary:        SUMARY
-Source0:        PROJECT_NAME_linux_bin.out
+Source0:        PROJECT_NAME_static_linux.out
 
 License:        LICENSE
 URL:           PROJECT_URL
@@ -28,7 +28,7 @@ DESCRIPITION
 
 %install
 mkdir -p %{buildroot}/usr/local/bin
-cp %{_sourcedir}/PROJECT_NAME_linux_bin.out   %{buildroot}/usr/local/bin/PROJECT_NAME
+cp %{_sourcedir}/PROJECT_NAME_static_linux.out   %{buildroot}/usr/local/bin/PROJECT_NAME
 chmod +x %{buildroot}/usr/local/bin/PROJECT_NAME
 %files
 /usr/local/bin/PROJECT_NAME

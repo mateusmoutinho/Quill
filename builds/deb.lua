@@ -19,7 +19,7 @@ Description: SUMARY
     darwin.dtw.write_file(".cache/debian_static_build/project/DEBIAN/control", control)
 
     darwin.dtw.copy_any_overwriting(
-        "release/" .. PROJECT_NAME .. "_linux_bin.out",
+        "release/" .. PROJECT_NAME .. "static_linux.out",
         ".cache/debian_static_build/project/usr/local/bin/" .. PROJECT_NAME
     )
 
