@@ -1,5 +1,5 @@
 #include "imports.fdeclare.h"
-#ifndef PROJECT_NAME_dep_define
-#define PROJECT_NAME_dep_define
+#ifndef Quill_dep_define
+#define Quill_dep_define
 #include "../src_dependencies/dep_define.dependencies.c"
 #endif

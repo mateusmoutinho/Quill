@@ -11,7 +11,9 @@ function silver_chain_organize()
 
     darwin.silverchain.generate({
         src = "src",
-        project_short_cut = "PROJECT_NAME",
+        project_short_cut = "Quill",
+        implement_main = false,
+
         tags = { 
             "dep_declare",
             "macros",
