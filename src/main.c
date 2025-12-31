@@ -1,6 +1,9 @@
-// silver_chain_scope_start
-// mannaged by silver chain: https://github.com/OUIsolutions/SilverChain
+//silver_chain_scope_start
+//mannaged by silver chain: https://github.com/OUIsolutions/SilverChain
 #include "imports/imports.dep_define.h"
-// silver_chain_scope_end
+//silver_chain_scope_end
 
-int main() {}
+int main() {
+  printf("quill in development\n");
+  return 0;
+}
