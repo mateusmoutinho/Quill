@@ -5,12 +5,11 @@
 
 
 DtwResource *find_user_by_name(const char *name) {
-
     DtwResource *users = DtwResource_sub_resource(global_database, USERS_PATH);
     DtwResource *found_user = DtwResource_find_by_primary_key_with_string(users, "name", name);
-    
     return found_user;
 }
+
 DtwResource *find_user_by_email(const char *email) {
     DtwResource *users = DtwResource_sub_resource(global_database, USERS_PATH);
     DtwResource *found_user = DtwResource_find_by_primary_key_with_string(users, "email", email);
