@@ -4,5 +4,5 @@
 //silver_chain_scope_end
 
 const char *API_START = "/api";
-const char *CREATE_USER = "/api/create_user";
+const char *create_user = "/api/create_user";
 const char *ADMIN_START = "/admin";

@@ -5,4 +5,5 @@
 
 char global_root_password[40] = {0};
 char global_database_path[256] = {0};
+cJSON *body_json = NULL;
 DtwResource *global_database;

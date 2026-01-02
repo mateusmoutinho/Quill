@@ -3,7 +3,7 @@
 #include "../../imports/imports.globals.h"
 //silver_chain_scope_end
 
-CwebHttpResponse *create_error(int status_code, int error_code, const char *msg,
+CwebHttpResponse *create_response_msg(int status_code, int error_code, const char *msg,
                                ...) {
 
   va_list args;

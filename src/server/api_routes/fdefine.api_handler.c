@@ -6,6 +6,14 @@
 
 CwebHttpResponse *main_api_handler(CwebHttpRequest *request) {
 
-  return create_error(NOT_FOUND, UNDEFINED_ROUTE_CODE, UNDEFINED_ROUTE,
+
+  if(strcmp(request->route,create_user)==0){
+    return create_user_route(request);
+  }
+
+  if(body_json){
+    cJSON_Delete(body_json);
+  }
+  return create_response_msg(NOT_FOUND, UNDEFINED_ROUTE_CODE, UNDEFINED_ROUTE,
                       request->route);
 }

@@ -3,5 +3,6 @@
 #include "../../imports/imports.dep_declare.h"
 //silver_chain_scope_end
 
-
-const int UNDEFINED_ROUTE_CODE = 1;
+const int NOT_FOUND = 404;
+const int BAD_REQUEST = 400;
+const int OK = 200;
