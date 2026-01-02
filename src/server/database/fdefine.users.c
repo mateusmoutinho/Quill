@@ -2,7 +2,9 @@
 //mannaged by silver chain: https://github.com/OUIsolutions/SilverChain
 #include "../../imports/imports.globals.h"
 //silver_chain_scope_end
-
+void destroy_user(DtwResource *user){
+    DtwResource_destroy(user);
+}
 void create_user_database(const char * name, const char * email, const char * password,bool is_root){
     DtwResource *users = DtwResource_sub_resource(global_database, USERS_PATH);
     DtwResource *user = DtwResource_new_schema_insertion(users);

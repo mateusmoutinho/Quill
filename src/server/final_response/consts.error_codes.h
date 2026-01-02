@@ -11,3 +11,5 @@ const int MISSING_USERNAME = 4;
 const int MISSING_EMAIL = 5;
 const int MISSING_PASSWORD = 6;
 const int USER_ALREADY_EXISTS = 7;
+const int USER_NOT_FOUND = 8;
+const int MISSING_LOGIN = 9;

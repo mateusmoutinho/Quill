@@ -7,8 +7,12 @@
 CwebHttpResponse *main_api_handler(CwebHttpRequest *request) {
 
 
-  if(strcmp(request->route,create_user)==0){
+  if(strcmp(request->route,CREATE_USER)==0){
     return create_user_route(request);
+  }
+
+  if(strcmp(request->route,REMOVE_USER)==0){
+    return remove_user_route(request);
   }
 
   if(body_json){
