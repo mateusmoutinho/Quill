@@ -4,12 +4,12 @@ This document describes all available build targets for the Quill project.
 
 ## Prerequisites
 
-Ensure you have the `run_blueprint` tool available in your system.
+Ensure you have the [Darwin](https://github.com/OUIsolutions/Darwin) tool available in your system.
 
 ## Usage
 
 ```bash
-run_blueprint --target <target_name>
+darwin run_blueprint --target <target_name>
 ```
 
 ## Available Targets
@@ -19,7 +19,7 @@ run_blueprint --target <target_name>
 Build static object files and link them into a local Linux binary.
 
 ```bash
-run_blueprint --target local_unix_bin
+darwin run_blueprint --target local_unix_bin
 ```
 
 **Outputs:**
@@ -30,7 +30,7 @@ run_blueprint --target local_unix_bin
 Build static object files (.o) for local Linux development.
 
 ```bash
-run_blueprint --target local_objects_libs
+darwin run_blueprint --target local_objects_libs
 ```
 
 **Outputs:**
@@ -48,7 +48,7 @@ run_blueprint --target local_objects_libs
 Make a single file amalgamation of the project.
 
 ```bash
-run_blueprint --target amalgamation
+darwin run_blueprint --target amalgamation
 ```
 
 **Outputs:**
@@ -70,7 +70,7 @@ run_blueprint --target static_linux
 Create a debian package from the static linux binary.
 
 ```bash
-run_blueprint --target debian
+darwin run_blueprint --target debian
 ```
 
 **Outputs:**
@@ -81,7 +81,7 @@ run_blueprint --target debian
 Create an RPM package from the static linux binary.
 
 ```bash
-run_blueprint --target rpm
+darwin run_blueprint --target rpm
 ```
 
 **Outputs:**
@@ -92,7 +92,7 @@ run_blueprint --target rpm
 Organize source files using SilverChain.
 
 ```bash
-run_blueprint --target silver_chain_organize
+darwin run_blueprint --target silver_chain_organize
 ```
 
 **Outputs:**
@@ -103,12 +103,12 @@ run_blueprint --target silver_chain_organize
 For local development on Linux/macOS:
 
 ```bash
-run_blueprint --target local_unix_bin
+darwin run_blueprint --target local_unix_bin
 ./Quill
 ```
 
 For creating a release:
 
 ```bash
-run_blueprint --target static_linux
+darwin run_blueprint --target static_linux
 ```
