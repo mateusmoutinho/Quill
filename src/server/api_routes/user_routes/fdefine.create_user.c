@@ -3,3 +3,4 @@
 #include "../../../imports/imports.globals.h"
 //silver_chain_scope_end
 
+CwebHttpResponse *create_user_route(CwebHttpRequest *request) {}

@@ -3,8 +3,8 @@
 #include "../imports/imports.globals.h"
 //silver_chain_scope_end
 
-
 CwebHttpResponse *main_server(CwebHttpRequest *request) {
+  start_database();
   if (dtw_starts_with(request->route, API_START)) {
     return main_api_handler(request);
   }
