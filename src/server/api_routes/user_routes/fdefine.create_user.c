@@ -10,20 +10,29 @@ CwebHttpResponse *create_user_route(CwebHttpRequest *request) {
         return error;
     }
 
-    char *username = cJSON_GetObjectItemCaseSensitive(body_json, "username")->valuestring;
-    if( username == NULL){
+    cJSON *username_json = cJSON_GetObjectItemCaseSensitive(body_json, "username");
+    if(username_json == NULL || username_json->valuestring == NULL){
         return create_response_msg(BAD_REQUEST, MISSING_USERNAME, USERNAME_NOT_PROVIDED);
     }
+    char *username = username_json->valuestring;
 
-    char *email = cJSON_GetObjectItemCaseSensitive(body_json, "email")->valuestring;
-    if(email == NULL){
+    cJSON *email_json = cJSON_GetObjectItemCaseSensitive(body_json, "email");
+    if(email_json == NULL || email_json->valuestring == NULL){
         return create_response_msg(BAD_REQUEST, MISSING_EMAIL, EMAIL_NOT_PROVIDED);
     }
-    char *password = cJSON_GetObjectItemCaseSensitive(body_json, "password")->valuestring;
-    if(password == NULL){
+    char *email = email_json->valuestring;
+
+    cJSON *password_json = cJSON_GetObjectItemCaseSensitive(body_json, "password");
+    if(password_json == NULL || password_json->valuestring == NULL){
         return create_response_msg(BAD_REQUEST, MISSING_PASSWORD, PASSWORD_NOT_PROVIDED);
     }
-    bool is_root = cJSON_GetObjectItemCaseSensitive(body_json, "is_root")->valueint;
+    char *password = password_json->valuestring;
+
+    bool is_root = false;
+    cJSON *is_root_json = cJSON_GetObjectItemCaseSensitive(body_json, "is_root");
+    if(is_root_json != NULL){
+        is_root = is_root_json->valueint;
+    }
 
     DtwResource *possible_existent_user = find_user_by_email_or_name(email);
     if(
