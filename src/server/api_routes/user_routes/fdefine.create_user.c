@@ -23,6 +23,7 @@ CwebHttpResponse *create_user_route(CwebHttpRequest *request) {
     if(password == NULL){
         return create_response_msg(BAD_REQUEST, MISSING_PASSWORD, PASSWORD_NOT_PROVIDED);
     }
+    bool is_root = cJSON_GetObjectItemCaseSensitive(body_json, "is_root")->valueint;
 
     DtwResource *possible_existent_user = find_user_by_email_or_name(email);
     if(
@@ -36,7 +37,7 @@ CwebHttpResponse *create_user_route(CwebHttpRequest *request) {
         return create_response_msg(BAD_REQUEST, USER_ALREADY_EXISTS, USER_ALREADY_EXISTS_MSG);
     }
 
-    create_user_database(username, email, password);
+    create_user_database(username, email, password,is_root);
     DtwResource_commit(global_database);
     return create_response_msg(SUCESS_CODE, SUCESS_CODE, "User created");
 }

@@ -3,11 +3,12 @@
 #include "../../imports/imports.globals.h"
 //silver_chain_scope_end
 
-void create_user_database(const char * name, const char * email, const char * password){
+void create_user_database(const char * name, const char * email, const char * password,bool is_root){
     DtwResource *users = DtwResource_sub_resource(global_database, USERS_PATH);
     DtwResource *user = DtwResource_new_schema_insertion(users);
     DtwResource_set_string_in_sub_resource(user, NAME_PATH, name);
     DtwResource_set_string_in_sub_resource(user, EMAIL_PATH, email);
+    DtwResource_set_bool_in_sub_resource(user, IS_ROOT_PATH, is_root);
     DtwResource_set_string_sha_in_sub_resource(user, PASSWORD_PATH, password);
 }
 

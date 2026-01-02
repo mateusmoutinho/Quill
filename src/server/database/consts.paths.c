@@ -7,3 +7,4 @@ const char *USERS_PATH = "users";
 const char *NAME_PATH = "name";
 const char *EMAIL_PATH = "email";
 const char *PASSWORD_PATH = "password";
+const char *IS_ROOT_PATH = "is_root";
