@@ -15,3 +15,10 @@ sudo mv darwin.out /usr/bin/darwin
 For Build the project you must have [Docker](https://www.docker.com/) installed on version **24.0.7**
 ### [Podman](https://podman.io/)
 For Build the project you must have [Podman](https://podman.io/) installed on version **4.0.1**
+
+### Runtime Dependencies
+all the runtime dependencies are listed in [darwindeps.json](darwindeps.json) and can be installed with:
+
+```bash
+darwin install darwindeps.json
+```
