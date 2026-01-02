@@ -6,3 +6,4 @@ libs/*
 .cache/*
 Quill
 src/imports/*
+data/*
