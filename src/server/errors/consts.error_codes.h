@@ -3,5 +3,5 @@
 #include "../../imports/imports.dep_declare.h"
 //silver_chain_scope_end
 
-const char *API_START = "/api";
-const char *ADMIN_START = "/admin";
+
+const int UNDEFINED_ROUTE_CODE = 1;

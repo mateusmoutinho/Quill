@@ -6,7 +6,7 @@
 
 CwebHttpResponse *main_server(CwebHttpRequest *request) {
   if (dtw_starts_with(request->route, API_START)) {
-    return cweb_send_text("api area", 200);
+    return main_api_handler(request);
   }
   if (dtw_starts_with(request->route, ADMIN_START)) {
     return cweb_send_text("admin area", 200);

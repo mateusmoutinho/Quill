@@ -1,5 +1,4 @@
 function silver_chain_organize()
-    print("generated with silver chain")
     local content = darwin.mdeclare.transform_dir({
         dir="src",
         startswith="fdefine",
