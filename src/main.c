@@ -18,6 +18,7 @@ int main(int argc, char *argv[]) {
       printf("No (--%s) password provided\n", ROOT_PASSWORD_FLAGS[0]);
       return 1;
     }
+
     printf("Root password: %s\n", root_password);
     if (strlen(root_password) > sizeof(global_root_password)) {
       printf("Root password too long\n");
@@ -25,6 +26,10 @@ int main(int argc, char *argv[]) {
     }
     strcpy(global_root_password, root_password);
     printf("Root password set to: %s\n", global_root_password);
+
+    CwebServer server = newCwebSever(5000, main_server);
+    CwebServer_start(&server);
+
     return 0;
   }
   printf("Unknown action: %s\n", action);
