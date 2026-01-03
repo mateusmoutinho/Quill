@@ -94,8 +94,7 @@ char *create_user_token(DtwResource *user){
     printf("name: %s\n", user->name);
     printf("token password: %s\n", token_password);
 
-    printf("created token name: %s\n", created_token->name);
-    sprintf(complete_token, "%s.%s.%s", user->name, created_token->name, token_password);
+    sprintf(complete_token, "%s.%s", user->name, token_password);
     printf("criou o token\n");
     free(token_password);
     return complete_token;
