@@ -19,7 +19,7 @@ CwebHttpResponse *create_token_route(CwebHttpRequest *request) {
     if(user == NULL){
         return create_response_msg(NOT_FOUND, USER_NOT_FOUND, USER_NOT_FOUND_MSG);
     }
-    char *password = cJSON_GetObjectItemCaseSensitive(body_json, "password")->valuestring;
+    char *password = cJSON_GetObjectItemCaseSensitive(body_json, PASSWORD_ENTRIE)->valuestring;
     if(password == NULL){
         return create_response_msg(BAD_REQUEST, MISSING_PASSWORD, PASSWORD_NOT_PROVIDED);
     }
