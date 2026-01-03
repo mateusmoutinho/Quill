@@ -16,6 +16,9 @@ CwebHttpResponse *create_token_route() {
     if(expiration < 0){
         expiration = -1;
     }
+    DtwResource *user = find_user_by_email_or_name(login);
+    GLOBAL_ERROR_PROTECT_NULL
+
     
     long expiration_value = expiration;
     char *user_password =DtwResource_get_string_from_sub_resource(user, PASSWORD_PATH);
