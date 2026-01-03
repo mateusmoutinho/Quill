@@ -15,11 +15,20 @@ CwebHttpResponse *create_token_route(CwebHttpRequest *request) {
         return create_response_msg(BAD_REQUEST, MISSING_LOGIN, MISSING_LOGIN_MSG);
     }
     char *login = login_json->valuestring;
-    DtwResource *possible_existent_user = find_user_by_email_or_name(login);
-    if(possible_existent_user == NULL){
+    DtwResource *user = find_user_by_email_or_name(login);
+    if(user == NULL){
         return create_response_msg(NOT_FOUND, USER_NOT_FOUND, USER_NOT_FOUND_MSG);
     }
-
-
+    char *password = cJSON_GetObjectItemCaseSensitive(body_json, "password")->valuestring;
+    if(password == NULL){
+        return create_response_msg(BAD_REQUEST, MISSING_PASSWORD, PASSWORD_NOT_PROVIDED);
+    }
+    char *user_password =DtwResource_get_string_from_sub_resource(user, PASSWORD_PATH);
+    char *transformed_password = transform_password(password);
+    if(strcmp(user_password, transformed_password) != 0){
+        return create_response_msg(FORBIDDEN, PASSWORD_NOT_MATCH, PASSWORD_NOT_MATCH_MSG);
+    }
+    
+    
 
 }

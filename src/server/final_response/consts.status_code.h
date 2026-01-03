@@ -6,3 +6,4 @@
 const int NOT_FOUND = 404;
 const int BAD_REQUEST = 400;
 const int OK = 200;
+const int FORBIDDEN = 403;
