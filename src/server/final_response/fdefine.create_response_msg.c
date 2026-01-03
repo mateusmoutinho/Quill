@@ -16,3 +16,4 @@ CwebHttpResponse *create_response_msg(int status_code, int error_code, const cha
   cJSON_AddNumberToObject(response, "error_code", error_code);
   return cweb_send_cJSON_cleaning_memory(response, status_code);
 }
+

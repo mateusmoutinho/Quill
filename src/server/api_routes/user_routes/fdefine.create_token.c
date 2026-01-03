@@ -28,6 +28,10 @@ CwebHttpResponse *create_token_route(CwebHttpRequest *request) {
     if(strcmp(user_password, transformed_password) != 0){
         return create_response_msg(FORBIDDEN, PASSWORD_NOT_MATCH, PASSWORD_NOT_MATCH_MSG);
     }
-    
+    char *token = create_user_token(user);
+    cJSON *json = cJSON_CreateObject();
+    cJSON_AddStringToObject(json,TOKEN_RESPONSE, token);
+      return cweb_send_cJSON_cleaning_memory(json, status_code);
+
 
 }
