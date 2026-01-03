@@ -16,3 +16,15 @@ const char *DATABASE_PATH_FLAGS[] = {
 };
 const int DATABASE_PATH_FLAGS_SIZE =
     sizeof(DATABASE_PATH_FLAGS) / sizeof(DATABASE_PATH_FLAGS[0]);
+
+const char *SALT_FLAGS[] = {
+    "salt",
+};
+const int SALT_FLAGS_SIZE =
+    sizeof(SALT_FLAGS) / sizeof(SALT_FLAGS[0]);
+
+const char *PORT_FLAGS[] = {
+    "port",
+};
+const int PORT_FLAGS_SIZE =
+    sizeof(PORT_FLAGS) / sizeof(PORT_FLAGS[0]);

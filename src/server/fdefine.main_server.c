@@ -44,7 +44,35 @@ int  start_server_cli(CArgvParse *args) {
     strcpy(global_database_path, database_path);
     printf("Database path set to: %s\n", global_database_path);
 
-    CwebServer server = newCwebSever(5000, main_server);
+    const char *salt = CArgvParse_get_flag((args), SALT_FLAGS, SALT_FLAGS_SIZE, 0);
+
+    if (salt == NULL) {
+      printf("No (--%s) provided\n", SALT_FLAGS[0]);
+      return 1;
+    }
+
+    if (strlen(salt) > sizeof(global_salt)) {
+      printf("Salt too long\n");
+      return 1;
+    }
+    strcpy(global_salt, salt);
+    printf("Salt set to: %s\n", global_salt);
+
+    const char *port_str = CArgvParse_get_flag((args), PORT_FLAGS, PORT_FLAGS_SIZE, 0);
+
+    if (port_str == NULL) {
+      printf("No (--%s) provided\n", PORT_FLAGS[0]);
+      return 1;
+    }
+
+    global_port = atoi(port_str);
+    if (global_port <= 0 || global_port > 65535) {
+      printf("Invalid port number: %s (must be between 1 and 65535)\n", port_str);
+      return 1;
+    }
+    printf("Port set to: %d\n", global_port);
+
+    CwebServer server = newCwebSever(global_port, main_server);
     CwebServer_start(&server);
 
     return 0;
