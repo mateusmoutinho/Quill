@@ -11,5 +11,5 @@ const int USER_ALREADY_EXISTS = 4;
 const int USER_NOT_FOUND = 5;
 const int INVALID_USER_TYPE = 6;
 const int KEY_NOT_FOUND = 7;
-
+const int KEY_WRONG_TYPE = 8;
 
