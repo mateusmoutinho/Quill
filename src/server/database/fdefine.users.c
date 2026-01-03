@@ -84,25 +84,15 @@ char *create_user_token(DtwResource *user,int expiration){
     DtwResource_set_long_in_sub_resource(created_token,CREATION_PATH, now);
     DtwResource_set_long_in_sub_resource(created_token,EXPIRATION_PATH, now + expiration);
 
-    
+
 
     char required_informations[300] ={0};
     sprintf(required_informations, "%s%s%ld%s", user_name, user_password, now, global_salt);
     char *token_password = dtw_generate_sha_from_string(required_informations);
     DtwResource_set_string_in_sub_resource(created_token,TOKEN_PASSWORD, token_password);
     DtwResource_commit(global_database);
-
-
-
     char *complete_token = malloc(100 + strlen(token_password));
-
-
-    printf("alocou o token\n");
-    printf("name: %s\n", user->name);
-    printf("token password: %s\n", token_password);
-
     sprintf(complete_token, "%s.%s.%s", user->name,created_token->name, token_password);
-    printf("criou o token\n");
     free(token_password);
     return complete_token;
 }
