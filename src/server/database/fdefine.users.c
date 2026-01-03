@@ -58,7 +58,7 @@ DtwResource *find_user_by_id(const char *id) {
     return found_user;
 }   
 
-char *create_user_token(DtwResource *user){
+char *create_user_token(DtwResource *user,int expiration){
 
 
 
@@ -82,8 +82,9 @@ char *create_user_token(DtwResource *user){
 
     long now = time(NULL);
     DtwResource_set_long_in_sub_resource(created_token,CREATION_PATH, now);
+    DtwResource_set_long_in_sub_resource(created_token,EXPIRATION_PATH, now + expiration);
 
-
+    
 
     char required_informations[300] ={0};
     sprintf(required_informations, "%s%s%ld%s", user_name, user_password, now, global_salt);

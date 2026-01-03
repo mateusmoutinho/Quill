@@ -5,3 +5,4 @@
 
 const char *PASSWORD_ENTRIE = "password";
 const char *USER_TYPE_ENTRIE = "user_type";
+const char *EXPIRATION_ENTRIE = "expiration";

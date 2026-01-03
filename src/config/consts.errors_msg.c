@@ -14,3 +14,5 @@ const char *USER_NOT_FOUND_MSG = "user not found";
 const char *MISSING_LOGIN_MSG = "login not provided";
 const char *PASSWORD_NOT_MATCH_MSG = "password not match";
 const char *INVALID_USER_TYPE_MSG = "invalid user type, must be 'author', 'publisher', or 'root'";
+const char *MISSING_EXPIRATION_MSG = "expiration not provided";
+const char *EXPIRATION_NOT_PROVIDED_MSG = "expiration not provided";

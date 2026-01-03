@@ -15,4 +15,7 @@ const int USER_NOT_FOUND = 8;
 const int MISSING_LOGIN = 9;
 const int PASSWORD_NOT_MATCH = 10;
 const int INVALID_USER_TYPE = 11;
+const int MISSING_EXPIRATION = 12;
+const int EXPIRATION_NOT_PROVIDED = 13;
+
 

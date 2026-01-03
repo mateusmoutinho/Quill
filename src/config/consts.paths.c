@@ -9,5 +9,6 @@ const char *EMAIL_PATH = "email";
 const char *PASSWORD_PATH = "password";
 const char *USER_TYPE_PATH = "user_type";
 const char *CREATION_PATH = "creation";
+const char *EXPIRATION_PATH = "expiration";
 const char *TOKEN_PASSWORD = "token_password";
 const char *TOKEN_PATH  = "tokens";

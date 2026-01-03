@@ -20,13 +20,23 @@ CwebHttpResponse *create_token_route() {
     if(password_json == NULL || password_json->valuestring == NULL){
         return create_response_msg(BAD_REQUEST, MISSING_PASSWORD, PASSWORD_NOT_PROVIDED);
     }
+
+    cJSON *expiration = cJSON_GetObjectItemCaseSensitive(global_body_json, EXPIRATION_ENTRIE);
+    if(expiration == NULL){
+        return create_response_msg(BAD_REQUEST, MISSING_EXPIRATION, EXPIRATION_NOT_PROVIDED_MSG);
+    }
+    if(expiration->valueint < 0){
+        return create_response_msg(BAD_REQUEST, EXPIRATION_NOT_PROVIDED, EXPIRATION_NOT_PROVIDED_MSG);
+    }
+
+    long expiration_value = expiration->valueint;
     char *password = password_json->valuestring;
     char *user_password =DtwResource_get_string_from_sub_resource(user, PASSWORD_PATH);
     char *transformed_password = transform_password(password);
     if(strcmp(user_password, transformed_password) != 0){
         return create_response_msg(FORBIDDEN, PASSWORD_NOT_MATCH, PASSWORD_NOT_MATCH_MSG);
     }
-    char *token = create_user_token(user);
+    char *token = create_user_token(user,expiration_value);
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json,TOKEN_RESPONSE, token);
       return cweb_send_cJSON_cleaning_memory(json, OK);
