@@ -31,7 +31,7 @@ CwebHttpResponse *create_token_route(CwebHttpRequest *request) {
     char *token = create_user_token(user);
     cJSON *json = cJSON_CreateObject();
     cJSON_AddStringToObject(json,TOKEN_RESPONSE, token);
-      return cweb_send_cJSON_cleaning_memory(json, status_code);
+      return cweb_send_cJSON_cleaning_memory(json, OK);
 
 
 }
