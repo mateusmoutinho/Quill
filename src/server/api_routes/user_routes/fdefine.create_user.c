@@ -58,6 +58,5 @@ CwebHttpResponse *create_user_route() {
     }
 
     create_user_database(username, email, password, user_type);
-    DtwResource_commit(global_database);
     return create_response_msg(OK, SUCESS_CODE, "User created");
 }
