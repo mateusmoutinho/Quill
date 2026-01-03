@@ -4,13 +4,10 @@
 //silver_chain_scope_end
 
 
-CwebHttpResponse *create_token_route(CwebHttpRequest *request) {
+CwebHttpResponse *create_token_route() {
 
-    CwebHttpResponse *error = read_body_json(request, 1024);
-    if(error != NULL){
-        return error;
-    }
-    cJSON *login_json = cJSON_GetObjectItemCaseSensitive(body_json, "login");
+
+    cJSON *login_json = cJSON_GetObjectItemCaseSensitive(global_body_json, "login");
     if(login_json == NULL || login_json->valuestring == NULL){
         return create_response_msg(BAD_REQUEST, MISSING_LOGIN, MISSING_LOGIN_MSG);
     }
@@ -19,7 +16,7 @@ CwebHttpResponse *create_token_route(CwebHttpRequest *request) {
     if(user == NULL){
         return create_response_msg(NOT_FOUND, USER_NOT_FOUND, USER_NOT_FOUND_MSG);
     }
-    char *password = cJSON_GetObjectItemCaseSensitive(body_json, PASSWORD_ENTRIE)->valuestring;
+    char *password = cJSON_GetObjectItemCaseSensitive(global_body_json, PASSWORD_ENTRIE)->valuestring;
     if(password == NULL){
         return create_response_msg(BAD_REQUEST, MISSING_PASSWORD, PASSWORD_NOT_PROVIDED);
     }

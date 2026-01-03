@@ -2,7 +2,7 @@
 //mannaged by silver chain: https://github.com/OUIsolutions/SilverChain
 #include "../imports/imports.dep_declare.h"
 //silver_chain_scope_end
-
+const int PUBLIC_TYPE = 0;
 const int ROOT_TYPE = 1;
 const int PUBLISHER_TYPE = 2;
 const int AUTHOR_TYPE = 3;

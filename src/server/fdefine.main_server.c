@@ -3,12 +3,16 @@
 #include "../imports/imports.globals.h"
 //silver_chain_scope_end
 
-CwebHttpResponse *main_server(CwebHttpRequest *request) {
+
+
+
+CwebHttpResponse *main_server(CwebHttpRequest *server_request) {
+  global_request = server_request;
   start_database();
-  if (dtw_starts_with(request->route, API_START)) {
-    return main_api_handler(request);
+  if (dtw_starts_with(global_request->route, API_START)) {
+    return main_api_handler();
   }
-  if (dtw_starts_with(request->route, ADMIN_START)) {
+  if (dtw_starts_with(global_request->route, ADMIN_START)) {
     return cweb_send_text("admin area", 200);
   }
 

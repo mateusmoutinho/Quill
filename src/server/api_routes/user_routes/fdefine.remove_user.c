@@ -4,14 +4,10 @@
 //silver_chain_scope_end
 
 
-CwebHttpResponse *remove_user_route(CwebHttpRequest *request) {
+CwebHttpResponse *remove_user_route() {
 
-    CwebHttpResponse *error = read_body_json(request, 1024);
-    if(error != NULL){
-        return error;
-    }
 
-    cJSON *login_json = cJSON_GetObjectItemCaseSensitive(body_json, "login");
+    cJSON *login_json = cJSON_GetObjectItemCaseSensitive(global_body_json, "login");
     if(login_json == NULL || login_json->valuestring == NULL){
         return create_response_msg(BAD_REQUEST, MISSING_LOGIN, MISSING_LOGIN_MSG);
     }
