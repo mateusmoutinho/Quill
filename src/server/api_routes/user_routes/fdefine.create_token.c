@@ -8,7 +8,7 @@ CwebHttpResponse *create_token_route() {
    
     const char *login = get_json_string_from_object(global_body_json, LOGIN_ENTRIE);
     GLOBAL_ERROR_PROTECT_NULL
-    char *password = get_json_string_from_object(global_body_json, PASSWORD_ENTRIE);
+    const char *password = get_json_string_from_object(global_body_json, PASSWORD_ENTRIE);
     GLOBAL_ERROR_PROTECT_NULL
 
     long expiration = get_json_long_from_object(global_body_json, EXPIRATION_ENTRIE);
