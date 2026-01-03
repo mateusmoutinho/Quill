@@ -5,23 +5,19 @@
 
 
 CwebHttpResponse *create_token_route() {
-
-
    
-    char *login = get_json_string_from_object(global_body_json,LOGIN_JSON_PATH, LOGIN_ENTRIE);
+    char *login = get_json_string_from_object(global_body_json, LOGIN_ENTRIE);
     GLOBAL_ERROR_PROTECT_NULL
-    char *password = get_json_string_from_object(global_body_json, PASSWORD_JSON_PATH, PASSWORD_ENTRIE);
+    char *password = get_json_string_from_object(global_body_json, PASSWORD_ENTRIE);
     GLOBAL_ERROR_PROTECT_NULL
 
-    long expiration = get_json_long_from_object(global_body_json, EXPIRATION_JSON_PATH, EXPIRATION_ENTRIE);
+    long expiration = get_json_long_from_object(global_body_json, EXPIRATION_ENTRIE);
     GLOBAL_ERROR_PROTECT_ZERO
     if(expiration < 0){
-        return create_response_msg(BAD_REQUEST, EXPIRATION_NOT_PROVIDED, EXPIRATION_NOT_PROVIDED_MSG);
+        expiration = -1;
     }
-
     
     long expiration_value = expiration;
-    char *password = password_json->valuestring;
     char *user_password =DtwResource_get_string_from_sub_resource(user, PASSWORD_PATH);
     char *transformed_password = transform_password(password);
     if(strcmp(user_password, transformed_password) != 0){
