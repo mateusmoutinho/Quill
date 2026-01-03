@@ -31,9 +31,22 @@ CwebHttpResponse *create_user_route(CwebHttpRequest *request) {
     
     long user_type = AUTHOR_TYPE;
   
-    cJSON *user_type_json = cJSON_GetObjectItemCaseSensitive(body_json,USER_TYPE_ENTRIE);
-    if(user_type_json != NULL){
-        user_type = (long)user_type_json->valueint;
+    cJSON *user_type_json = cJSON_GetObjectItemCaseSensitive(body_json, USER_TYPE_ENTRIE);
+    if(user_type_json != NULL && user_type_json->valuestring != NULL){
+        char *user_type_str = user_type_json->valuestring;
+        
+        if(strcmp(user_type_str, AUTHOR_TYPE_STR) == 0){
+            user_type = AUTHOR_TYPE;
+        }
+        else if(strcmp(user_type_str, PUBLISHER_TYPE_STR) == 0){
+            user_type = PUBLISHER_TYPE;
+        }
+        else if(strcmp(user_type_str, ROOT_TYPE_STR) == 0){
+            user_type = ROOT_TYPE;
+        }
+        else {
+            return create_response_msg(BAD_REQUEST, INVALID_USER_TYPE, INVALID_USER_TYPE_MSG);
+        }
     }
   
     DtwResource *possible_existent_user = find_user_by_email_or_name(email);

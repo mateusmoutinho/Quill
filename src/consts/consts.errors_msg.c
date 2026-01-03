@@ -13,3 +13,4 @@ const char *USER_ALREADY_EXISTS_MSG = "user already exists";
 const char *USER_NOT_FOUND_MSG = "user not found";
 const char *MISSING_LOGIN_MSG = "login not provided";
 const char *PASSWORD_NOT_MATCH_MSG = "password not match";
+const char *INVALID_USER_TYPE_MSG = "invalid user type, must be 'author', 'publisher', or 'root'";
