@@ -29,6 +29,5 @@ CwebHttpResponse *create_token_route(CwebHttpRequest *request) {
         return create_response_msg(FORBIDDEN, PASSWORD_NOT_MATCH, PASSWORD_NOT_MATCH_MSG);
     }
     
-    
 
 }

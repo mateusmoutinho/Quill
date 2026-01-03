@@ -1,6 +1,8 @@
 //silver_chain_scope_start
 //mannaged by silver chain: https://github.com/OUIsolutions/SilverChain
 #include "../../imports/imports.globals.h"
+#include <stdio.h>
+#include <string.h>
 //silver_chain_scope_end
 void destroy_user(DtwResource *user){
     DtwResource_destroy(user);
@@ -55,3 +57,22 @@ DtwResource *find_user_by_id(const char *id) {
     DtwResource *found_user = DtwResource_find_by_name_id(users, id);
     return found_user;
 }   
+
+char *create_user_token(DtwResource *user){
+    DtwResource *tokens = DtwResource_sub_resource(user, TOKEN_PATH);
+    DtwDatabaseSchema *token_schema =DtwResource_newDatabaseSchema(tokens);
+    DtwResource *created_token = DtwResource_new_schema_insertion(tokens);
+    
+    long now = time(NULL);
+    DtwResource_set_long_in_sub_resource(created_token,CREATION_PATH, now);
+    char required_informations[300] ={0};
+    sprintf(required_informations, "%s%s%ld%s", global_salt, global_salt, now, global_salt);
+    char *token_password = dtw_generate_sha_from_string(required_informations);
+
+    DtwResource_set_string_in_sub_resource(created_token,TOKEN_PASSWORD, token_password);
+
+    char *complete_token = malloc(100 + strlen(token_password));
+    sprintf(complete_token, "%s.%s.%s", user->name, created_token->name, token_password);
+    free(token_password);
+    return complete_token;
+}
