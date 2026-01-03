@@ -62,15 +62,16 @@ char *create_user_token(DtwResource *user){
     char *user_name  = DtwResource_get_string_from_sub_resource(user, NAME_PATH);
     char *user_password = DtwResource_get_string_from_sub_resource(user, PASSWORD_PATH);
 
-    DtwResource *tokens_database = new_DtwResource("teste");
-    DtwDatabaseSchema *token_database =DtwResource_newDatabaseSchema(tokens_database);
-    DtwSchema *token_schema = DtwDtatabaseSchema_new_subSchema(token_database,TOKEN_PATH);
-    
-    DtwResource *created_token = DtwResource_new_schema_insertion(tokens_database);
 
-    if(DtwResource_error(global_database)){
-        printf("error: %s\n",DtwResource_get_error_message(global_database));
-    }
+    DtwResource *tokens_database = new_DtwResource(user->path);
+    DtwDatabaseSchema *token_root_schema =  DtwResource_newDatabaseSchema(tokens_database);
+    DtwDtatabaseSchema_new_subSchema(token_root_schema,TOKEN_PATH);
+    DtwResource *tokens = DtwResource_sub_resource(tokens_database, TOKEN_PATH);    
+
+
+    DtwResource *created_token = DtwResource_new_schema_insertion(tokens);
+
+  
 
     long now = time(NULL);
     DtwResource_set_long_in_sub_resource(created_token,CREATION_PATH, now);
@@ -84,9 +85,7 @@ char *create_user_token(DtwResource *user){
     DtwResource_commit(tokens_database);
 
 
-    if(DtwResource_error(global_database)){
-        printf("error: %s\n",DtwResource_get_error_message(global_database));
-    }
+
     char *complete_token = malloc(100 + strlen(token_password));
 
 
