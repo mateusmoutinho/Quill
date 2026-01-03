@@ -10,3 +10,4 @@ int global_port = 0;
 cJSON *global_body_json = NULL;
 DtwResource *global_database;
 CwebHttpRequest *global_request;
+CwebHttpResponse *global_error;

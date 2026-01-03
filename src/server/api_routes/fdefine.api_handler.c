@@ -33,6 +33,9 @@ CwebHttpResponse *main_api_handler() {
       if(response == NULL){
           response = current_route.handler();
       }
+      if(global_error){
+        response = global_error;
+      }
     }
   }
 
