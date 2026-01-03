@@ -5,13 +5,26 @@
 void destroy_user(DtwResource *user){
     DtwResource_destroy(user);
 }
+char *transform_password(const char *password){
+    char * password_concatened_with_salt = malloc(sizeof(global_salt)+40);
+    strcpy(password_concatened_with_salt, global_salt);
+    strcat(password_concatened_with_salt, password);
+    char *result = dtw_generate_sha_from_string(password_concatened_with_salt);
+    free(password_concatened_with_salt);
+    return result;
+}
+
 void create_user_database(const char * name, const char * email, const char * password,long user_type){
     DtwResource *users = DtwResource_sub_resource(global_database, USERS_PATH);
     DtwResource *user = DtwResource_new_schema_insertion(users);
     DtwResource_set_string_in_sub_resource(user, NAME_PATH, name);
     DtwResource_set_string_in_sub_resource(user, EMAIL_PATH, email);
     DtwResource_set_long_in_sub_resource(user, USER_TYPE_PATH, user_type);
-    DtwResource_set_string_sha_in_sub_resource(user, PASSWORD_PATH, password);
+
+    char *user_sha = transform_password(password);
+    DtwResource_set_string_sha_in_sub_resource(user, PASSWORD_PATH, user_sha);
+    free(user_sha);
+
 }
 
 DtwResource *find_user_by_name(const char *name) {
