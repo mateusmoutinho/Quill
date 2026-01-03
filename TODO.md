@@ -6,5 +6,7 @@
 -- Create Category Managment mechanic on Frontend
 -- Create Article Managment mechanic on backend 
 -- Create Article Managment mechanic on Frontend
+-- Create Database Managment mechanic on backend 
+-- Create Cli Database Managment
 -- Document the project
 -- Create Videos of demonstration
