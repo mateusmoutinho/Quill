@@ -5,7 +5,6 @@
 
 
 CwebHttpResponse * read_body_json(CwebHttpRequest *request,int max_size) {
-   
     const char *body = (const char*)CwebHttpRequest_read_content(request, max_size);
     if(body == NULL){
         return create_response_msg(BAD_REQUEST, BODY_NOT_PROVIDED_CODE, BODY_NOT_PROVIDED, "body not provided"); 
