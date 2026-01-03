@@ -6,12 +6,8 @@
 
 CwebHttpResponse *remove_user_route() {
 
-
-    cJSON *login_json = cJSON_GetObjectItemCaseSensitive(global_body_json, "login");
-    if(login_json == NULL || login_json->valuestring == NULL){
-        return create_response_msg(BAD_REQUEST, MISSING_LOGIN, MISSING_LOGIN_MSG);
-    }
-    char *login = login_json->valuestring;
+    const char *login = get_json_string_from_object(global_body_json, LOGIN_ENTRIE);
+    GLOBAL_ERROR_PROTECT_NULL
     
     DtwResource *possible_existent_user = find_user_by_email_or_name(login);
     if(

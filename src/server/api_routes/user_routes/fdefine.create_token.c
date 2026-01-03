@@ -6,7 +6,7 @@
 
 CwebHttpResponse *create_token_route() {
    
-    char *login = get_json_string_from_object(global_body_json, LOGIN_ENTRIE);
+    const char *login = get_json_string_from_object(global_body_json, LOGIN_ENTRIE);
     GLOBAL_ERROR_PROTECT_NULL
     char *password = get_json_string_from_object(global_body_json, PASSWORD_ENTRIE);
     GLOBAL_ERROR_PROTECT_NULL
@@ -19,7 +19,10 @@ CwebHttpResponse *create_token_route() {
     DtwResource *user = find_user_by_email_or_name(login);
     GLOBAL_ERROR_PROTECT_NULL
 
-    
+    if(user == NULL){
+        return create_response_msg(BAD_REQUEST, USER_NOT_FOUND, USER_NOT_FOUND_MSG);
+    }
+
     long expiration_value = expiration;
     char *user_password =DtwResource_get_string_from_sub_resource(user, PASSWORD_PATH);
     char *transformed_password = transform_password(password);

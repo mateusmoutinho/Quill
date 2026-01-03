@@ -34,7 +34,7 @@ long get_json_long_from_object_or_default(cJSON *object,const char *key,long def
     return get_json_long_from_object(object,key);
 }
 
-char *get_json_string_from_object(cJSON *object,const char *key){
+const char *get_json_string_from_object(cJSON *object,const char *key){
      cJSON *value = get_object_from_path(object,key);
      GLOBAL_ERROR_PROTECT_NULL
      if(!cJSON_IsString(value)){
@@ -44,7 +44,7 @@ char *get_json_string_from_object(cJSON *object,const char *key){
      return value->valuestring;
 }
 
-char *get_json_string_from_object_or_default(cJSON *object,const char *key,char *default_value){
+const char *get_json_string_from_object_or_default(cJSON *object,const char *key,char *default_value){
     cJSON *value = cJSON_GetObjectItemCaseSensitive(object,key);
     if(!value){
         return default_value;

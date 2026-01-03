@@ -6,30 +6,19 @@
 CwebHttpResponse *create_user_route() {
 
 
-    cJSON *username_json = cJSON_GetObjectItemCaseSensitive(global_body_json, "username");
-    if(username_json == NULL || username_json->valuestring == NULL){
-        return create_response_msg(BAD_REQUEST, MISSING_USERNAME, USERNAME_NOT_PROVIDED);
-    }
-    char *username = username_json->valuestring;
+    const char *username = get_json_string_from_object(global_body_json, "username");
+    GLOBAL_ERROR_PROTECT_NULL
 
-    cJSON *email_json = cJSON_GetObjectItemCaseSensitive(global_body_json, "email");
-    if(email_json == NULL || email_json->valuestring == NULL){
-        return create_response_msg(BAD_REQUEST, MISSING_EMAIL, EMAIL_NOT_PROVIDED);
-    }
-    char *email = email_json->valuestring;
+    const char *email = get_json_string_from_object(global_body_json, "email");
+    GLOBAL_ERROR_PROTECT_NULL
 
-    cJSON *password_json = cJSON_GetObjectItemCaseSensitive(global_body_json, "password");
-    if(password_json == NULL || password_json->valuestring == NULL){
-        return create_response_msg(BAD_REQUEST, MISSING_PASSWORD, PASSWORD_NOT_PROVIDED);
-    }
-    char *password = password_json->valuestring;
+    const char *password = get_json_string_from_object(global_body_json, "password");
+    GLOBAL_ERROR_PROTECT_NULL
 
-    
     long user_type = AUTHOR_TYPE;
   
-    cJSON *user_type_json = cJSON_GetObjectItemCaseSensitive(global_body_json, USER_TYPE_ENTRIE);
-    if(user_type_json != NULL && user_type_json->valuestring != NULL){
-        char *user_type_str = user_type_json->valuestring;
+    const char *user_type_str = get_json_string_from_object(global_body_json, USER_TYPE_ENTRIE);
+    if(user_type_str != NULL){
         
         if(strcmp(user_type_str, AUTHOR_TYPE_STR) == 0){
             user_type = AUTHOR_TYPE;
@@ -46,6 +35,7 @@ CwebHttpResponse *create_user_route() {
     }
   
     DtwResource *possible_existent_user = find_user_by_email_or_name(email);
+    GLOBAL_ERROR_PROTECT_NULL
     if(
         possible_existent_user != NULL){
         return create_response_msg(BAD_REQUEST, USER_ALREADY_EXISTS, USER_ALREADY_EXISTS_MSG);
@@ -58,5 +48,6 @@ CwebHttpResponse *create_user_route() {
     }
 
     create_user_database(username, email, password, user_type);
+    GLOBAL_ERROR_PROTECT_NULL
     return create_response_msg(OK, SUCESS_CODE, "User created");
 }

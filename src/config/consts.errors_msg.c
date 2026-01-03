@@ -12,3 +12,4 @@ const char *INVALID_USER_TYPE_MSG = "invalid user type, must be 'author', 'publi
 const char *KEY_NOT_FOUND_MSG = "key %s not found ";
 const char *KEY_WRONG_TYPE_MSG = "key %s is not of type %s";
 const char *PASSWORD_NOT_MATCH_MSG = "password not match";
+const char *USER_NOT_FOUND_MSG = "user not found";
