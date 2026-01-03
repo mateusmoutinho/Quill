@@ -4,9 +4,6 @@
 //silver_chain_scope_end
 
 const char *PASSWORD_ENTRIE = "password";
-const char *PASSWORD_JSON_PATH = "['password']";
 const char *USER_TYPE_ENTRIE = "user_type";
 const char *EXPIRATION_ENTRIE = "expiration";
-const char *EXPIRATION_JSON_PATH = "['expiration']";
 const char *LOGIN_ENTRIE = "login";
-const char *LOGIN_JSON_PATH = "['login']";  
