@@ -16,10 +16,11 @@ CwebHttpResponse *create_token_route() {
     if(user == NULL){
         return create_response_msg(NOT_FOUND, USER_NOT_FOUND, USER_NOT_FOUND_MSG);
     }
-    char *password = cJSON_GetObjectItemCaseSensitive(global_body_json, PASSWORD_ENTRIE)->valuestring;
-    if(password == NULL){
+    cJSON *password_json = cJSON_GetObjectItemCaseSensitive(global_body_json, PASSWORD_ENTRIE);
+    if(password_json == NULL || password_json->valuestring == NULL){
         return create_response_msg(BAD_REQUEST, MISSING_PASSWORD, PASSWORD_NOT_PROVIDED);
     }
+    char *password = password_json->valuestring;
     char *user_password =DtwResource_get_string_from_sub_resource(user, PASSWORD_PATH);
     char *transformed_password = transform_password(password);
     if(strcmp(user_password, transformed_password) != 0){
