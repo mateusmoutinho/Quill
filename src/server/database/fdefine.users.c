@@ -20,9 +20,8 @@ void create_user_database(const char * name, const char * email, const char * pa
     DtwResource_set_string_in_sub_resource(user, NAME_PATH, name);
     DtwResource_set_string_in_sub_resource(user, EMAIL_PATH, email);
     DtwResource_set_long_in_sub_resource(user, USER_TYPE_PATH, user_type);
-
     char *user_sha = transform_password(password);
-    DtwResource_set_string_sha_in_sub_resource(user, PASSWORD_PATH, user_sha);
+    DtwResource_set_string_in_sub_resource(user, PASSWORD_PATH, user_sha);
     free(user_sha);
 
 }
