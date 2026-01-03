@@ -5,4 +5,3 @@
 
 #define GLOBAL_ERROR_PROTECT_ZERO  if(global_error){return 0;}
 #define GLOBAL_ERROR_PROTECT_NULL if(global_error){return NULL;}
-#define GLOBAL_ERROR_PROTECT_RESPONSE if(global_error){return global_error;}

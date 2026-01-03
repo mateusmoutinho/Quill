@@ -7,29 +7,20 @@
 CwebHttpResponse *create_token_route() {
 
 
-    cJSON *login_json = cJSON_GetObjectItemCaseSensitive(global_body_json, "login");
-    if(login_json == NULL || login_json->valuestring == NULL){
-        return create_response_msg(BAD_REQUEST, MISSING_LOGIN, MISSING_LOGIN_MSG);
-    }
-    char *login = login_json->valuestring;
-    DtwResource *user = find_user_by_email_or_name(login);
-    if(user == NULL){
-        return create_response_msg(NOT_FOUND, USER_NOT_FOUND, USER_NOT_FOUND_MSG);
-    }
-    cJSON *password_json = cJSON_GetObjectItemCaseSensitive(global_body_json, PASSWORD_ENTRIE);
-    if(password_json == NULL || password_json->valuestring == NULL){
-        return create_response_msg(BAD_REQUEST, MISSING_PASSWORD, PASSWORD_NOT_PROVIDED);
-    }
+   
+    char *login = get_json_string_from_object(global_body_json,LOGIN_JSON_PATH, LOGIN_ENTRIE);
+    GLOBAL_ERROR_PROTECT_NULL
+    char *password = get_json_string_from_object(global_body_json, PASSWORD_JSON_PATH, PASSWORD_ENTRIE);
+    GLOBAL_ERROR_PROTECT_NULL
 
-    cJSON *expiration = cJSON_GetObjectItemCaseSensitive(global_body_json, EXPIRATION_ENTRIE);
-    if(expiration == NULL){
-        return create_response_msg(BAD_REQUEST, MISSING_EXPIRATION, EXPIRATION_NOT_PROVIDED_MSG);
-    }
-    if(expiration->valueint < 0){
+    long expiration = get_json_long_from_object(global_body_json, EXPIRATION_JSON_PATH, EXPIRATION_ENTRIE);
+    GLOBAL_ERROR_PROTECT_ZERO
+    if(expiration < 0){
         return create_response_msg(BAD_REQUEST, EXPIRATION_NOT_PROVIDED, EXPIRATION_NOT_PROVIDED_MSG);
     }
 
-    long expiration_value = expiration->valueint;
+    
+    long expiration_value = expiration;
     char *password = password_json->valuestring;
     char *user_password =DtwResource_get_string_from_sub_resource(user, PASSWORD_PATH);
     char *transformed_password = transform_password(password);

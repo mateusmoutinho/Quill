@@ -19,7 +19,7 @@ long get_json_long_from_object(cJSON *object,const char *path,const char *key){
      cJSON *value = get_object_from_path(object,path,key);
      GLOBAL_ERROR_PROTECT_ZERO
      if(!cJSON_IsNumber(value)){
-        global_error = create_response_msg(BAD_REQUEST, KEY_WRONG_TYPE, KEY_WRONG_TYPE_MSG,key,path,"int");
+        global_error = create_response_msg(BAD_REQUEST, KEY_WRONG_TYPE, KEY_WRONG_TYPE_MSG,key,path,"integer");
         return 0;
      }
      return value->valueint;
