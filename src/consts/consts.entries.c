@@ -4,3 +4,4 @@
 //silver_chain_scope_end
 
 const char *PASSWORD_ENTRIE = "password";
+const char *USER_TYPE_ENTRIE = "user_type";

@@ -30,11 +30,12 @@ CwebHttpResponse *create_user_route(CwebHttpRequest *request) {
 
     
     long user_type = AUTHOR_TYPE;
-    cJSON *user_type_json = cJSON_GetObjectItemCaseSensitive(body_json, "user_type");
+  
+    cJSON *user_type_json = cJSON_GetObjectItemCaseSensitive(body_json,USER_TYPE_ENTRIE);
     if(user_type_json != NULL){
         user_type = (long)user_type_json->valueint;
     }
-
+  
     DtwResource *possible_existent_user = find_user_by_email_or_name(email);
     if(
         possible_existent_user != NULL){
